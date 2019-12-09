@@ -1,4 +1,4 @@
-var sw = {
+var note = {
   /* [INIT] */
   etime: null, // holds HTML time display
   erst: null, // holds HTML reset button
@@ -18,9 +18,9 @@ var sw = {
 
   init: function() {
     // Prepare pictures
-    sw.startPic = {"img":"images/start.png","name":"go","clef":""};
-    sw.myPic = sw.startPic;
-    sw.myPix = [
+    note.startPic = {"img":"images/start.png","name":"go","clef":""};
+    note.myPic = note.startPic;
+    note.myPix = [
       {"img":"images/notes/note001.png","name":"sol","clef":"sol"},
       {"img":"images/notes/note002.png","name":"la","clef":"sol"},
       {"img":"images/notes/note003.png","name":"si","clef":"sol"},
@@ -52,67 +52,67 @@ var sw = {
     ];
 
     // Get HTML elements
-    sw.etime = document.getElementById("sw-time");
-    sw.erst = document.getElementById("sw-rst");
-    sw.ego = document.getElementById("sw-go");
-    sw.etips = document.getElementById("sw-tips");
-    sw.esol = document.getElementById("sw-sol");
-    sw.efa = document.getElementById("sw-fa");
-    sw.esolfa = document.getElementById("sw-solfa");
-    sw.eimg = document.getElementById("myPicture");
+    note.etime = document.getElementById("note-time");
+    note.erst = document.getElementById("note-rst");
+    note.ego = document.getElementById("note-go");
+    note.etips = document.getElementById("note-tips");
+    note.esol = document.getElementById("note-sol");
+    note.efa = document.getElementById("note-fa");
+    note.esolfa = document.getElementById("note-solfa");
+    note.eimg = document.getElementById("myPicture");
 
     // Attach listeners
-    sw.erst.addEventListener("click", sw.reset);
-    sw.erst.disabled = false;
+    note.erst.addEventListener("click", note.reset);
+    note.erst.disabled = false;
 
-    sw.ego.addEventListener("click", sw.start);
-    sw.ego.addEventListener("click", sw.choosePic);
-    sw.ego.disabled = false;
-    sw.ego.style.display="none";
+    note.ego.addEventListener("click", note.start);
+    note.ego.addEventListener("click", note.choosePic);
+    note.ego.disabled = false;
+    note.ego.style.display="none";
 
-    sw.etips.addEventListener("click", sw.showTips);
-    sw.etips.disabled = false;
+    note.etips.addEventListener("click", note.showTips);
+    note.etips.disabled = false;
 
-    sw.esol.style.display="inline";
-    sw.esol.addEventListener("click", sw.start);
-    sw.esol.addEventListener("click", function(){sw.myPix=sw.myPix.filter(sw.removeFa)});
-    sw.esol.addEventListener("click", sw.choosePic);
-    sw.esol.addEventListener("click", sw.hideClefs);
-    sw.esol.disabled = false;
+    note.esol.style.display="inline";
+    note.esol.addEventListener("click", note.start);
+    note.esol.addEventListener("click", function(){note.myPix=note.myPix.filter(note.removeFa)});
+    note.esol.addEventListener("click", note.choosePic);
+    note.esol.addEventListener("click", note.hideClefs);
+    note.esol.disabled = false;
 
-    sw.efa.style.display="inline";
-    sw.efa.addEventListener("click", sw.start);
-    sw.efa.addEventListener("click", function(){sw.myPix=sw.myPix.filter(sw.removeSol)});
-    sw.efa.addEventListener("click", sw.choosePic);
-    sw.efa.addEventListener("click", sw.hideClefs);
-    sw.efa.disabled = false;
+    note.efa.style.display="inline";
+    note.efa.addEventListener("click", note.start);
+    note.efa.addEventListener("click", function(){note.myPix=note.myPix.filter(note.removeSol)});
+    note.efa.addEventListener("click", note.choosePic);
+    note.efa.addEventListener("click", note.hideClefs);
+    note.efa.disabled = false;
 
-    sw.esolfa.style.display="inline";
-    sw.esolfa.addEventListener("click", sw.start);
-    sw.esolfa.addEventListener("click", sw.choosePic);
-    sw.esolfa.addEventListener("click", sw.hideClefs);
-    sw.esolfa.disabled = false;
+    note.esolfa.style.display="inline";
+    note.esolfa.addEventListener("click", note.start);
+    note.esolfa.addEventListener("click", note.choosePic);
+    note.esolfa.addEventListener("click", note.hideClefs);
+    note.esolfa.disabled = false;
 
-    sw.eimg.addEventListener("click", sw.start);
-    sw.eimg.addEventListener("click", sw.choosePic);
-    sw.eimg.addEventListener("click", sw.hideClefs);
-    sw.eimg.disabled = false;
+    note.eimg.addEventListener("click", note.start);
+    note.eimg.addEventListener("click", note.choosePic);
+    note.eimg.addEventListener("click", note.hideClefs);
+    note.eimg.disabled = false;
 
     // preload for jedi players
-    sw.imagesInMemory = new Array();
-    sw.myPix.forEach(sw.preload);
+    note.imagesInMemory = new Array();
+    note.myPix.forEach(note.preload);
 
     // default css for elements
-    sw.eimg.style.visibility = 'visible';
-    sw.eimg.src = sw.startPic.img;
-    sw.etime.style.fontSize = 'medium';
-    sw.etime.style.display = 'inline-block';
-    sw.etime.style.marginTop = '0px';
+    note.eimg.style.visibility = 'visible';
+    note.eimg.src = note.startPic.img;
+    note.etime.style.fontSize = 'medium';
+    note.etime.style.display = 'inline-block';
+    note.etime.style.marginTop = '0px';
 
     // take shuffle pix
-    // sw.myRandom();
-    sw.shuffleArray(sw.myPix);
-    // document.getElementById("dataForDebug").innerHTML = JSON.stringify(sw.myPix);
+    // note.myRandom();
+    note.shuffleArray(note.myPix);
+    // document.getElementById("dataForDebug").innerHTML = JSON.stringify(note.myPix);
 
   },
 
@@ -123,15 +123,15 @@ var sw = {
     // alert(item+" "+index);
     var image = new Image();
     image.src = item.img;
-    sw.imagesInMemory.push(image);
+    note.imagesInMemory.push(image);
   },
 
   tick: function() {
     // tick() : update display if stopwatch running
 
     // Calculate hours, mins, seconds
-    sw.now++;
-    var remain = sw.now;
+    note.now++;
+    var remain = note.now;
     var hours = Math.floor(remain / 3600);
     remain -= hours * 3600;
     var mins = Math.floor(remain / 60);
@@ -145,74 +145,74 @@ var sw = {
     if (secs < 10) {
       secs = "0" + secs;
     }
-    sw.etime.innerHTML = mins + ":" + secs;
+    note.etime.innerHTML = mins + ":" + secs;
   },
 
   start: function() {
     // start() : start the stopwatch
 
-    if (sw.timer == null) { // start only if stopwatch was stopped
-      sw.timer = setInterval(sw.tick, 1000);
-      sw.ego.value = "\u275a\u275a"; //pause icon
-      sw.ego.removeEventListener("click", sw.start);
-      sw.ego.addEventListener("click", sw.stop);
+    if (note.timer == null) { // start only if stopwatch was stopped
+      note.timer = setInterval(note.tick, 1000);
+      note.ego.value = "\u275a\u275a"; //pause icon
+      note.ego.removeEventListener("click", note.start);
+      note.ego.addEventListener("click", note.stop);
     }
   },
 
   stop: function() {
     // stop() : stop the stopwatch
 
-    clearInterval(sw.timer);
-    sw.timer = null;
-    sw.ego.value = "\u25ba"; //start icon
-    sw.ego.removeEventListener("click", sw.stop);
-    sw.ego.addEventListener("click", sw.start);
+    clearInterval(note.timer);
+    note.timer = null;
+    note.ego.value = "\u25ba"; //start icon
+    note.ego.removeEventListener("click", note.stop);
+    note.ego.addEventListener("click", note.start);
   },
 
   reset: function() {
     // reset() : reset the stopwatch
 
     // Stop if running
-    if (sw.timer != null) {
-      sw.stop();
+    if (note.timer != null) {
+      note.stop();
     }
 
     // Reset time
-    sw.now = -1;
-    sw.tick();
+    note.now = -1;
+    note.tick();
 
     // default init
-    sw.init();
+    note.init();
   },
 
 
   choosePic: function() {
 
-    sw.eimg.style.visibility = 'visible';
-    // document.getElementById("dataForDebug").innerHTML = JSON.stringify(sw.myPix);
-    //alert(sw.myPix.length);
-    if (sw.myPix.length > 0) {
+    note.eimg.style.visibility = 'visible';
+    // document.getElementById("dataForDebug").innerHTML = JSON.stringify(note.myPix);
+    //alert(note.myPix.length);
+    if (note.myPix.length > 0) {
       //take the last pic
-      sw.eimg.src = sw.myPix[sw.myPix.length - 1].img;
-      sw.myPic = {
-        "img":sw.myPix[sw.myPix.length - 1].img,
-        "name":sw.myPix[sw.myPix.length - 1].name,
-        "clef":sw.myPix[sw.myPix.length - 1].clef
+      note.eimg.src = note.myPix[note.myPix.length - 1].img;
+      note.myPic = {
+        "img":note.myPix[note.myPix.length - 1].img,
+        "name":note.myPix[note.myPix.length - 1].name,
+        "clef":note.myPix[note.myPix.length - 1].clef
       };
-      //remove the last pic from sw.myPix
-      sw.myPix.pop();
+      //remove the last pic from note.myPix
+      note.myPix.pop();
     } else {
-      sw.finishBeautifully();
+      note.finishBeautifully();
     }
   },
 
   // myRandom: function() {
-  //   sw.myPix.sort(function(a, b) {
-  //     // return Math.floor(Math.random() * sw.myPix.length)
+  //   note.myPix.sort(function(a, b) {
+  //     // return Math.floor(Math.random() * note.myPix.length)
   //     return 0.5 - Math.random()
-  //     // var randomNum = Math.floor(Math.random() * sw.myPix.length);
+  //     // var randomNum = Math.floor(Math.random() * note.myPix.length);
   //   });
-  //   document.getElementById("dataForDebug").innerHTML = sw.myPix;
+  //   document.getElementById("dataForDebug").innerHTML = note.myPix;
   // },
   shuffleArray : function(array) {
       for (var i = array.length - 1; i > 0; i--) {
@@ -224,29 +224,29 @@ var sw = {
   },
 
   finishBeautifully: function() {
-    sw.eimg.style.visibility = 'hidden';
-    sw.etime.style.fontSize = '100px';
-    sw.etime.style.display = 'block';
-    sw.etime.style.marginTop = '100px';
-    sw.stop();
+    note.eimg.style.visibility = 'hidden';
+    note.etime.style.fontSize = '100px';
+    note.etime.style.display = 'block';
+    note.etime.style.marginTop = '100px';
+    note.stop();
   },
 
   showTips : function() {
-    sw.etips.value = sw.myPic.name;
-    sw.etips.style.fontSize = '3em';
-    // sw.etips.style.width = '50%';
-    setTimeout(sw.hideTips, 888);
+    note.etips.value = note.myPic.name;
+    note.etips.style.fontSize = '3em';
+    // note.etips.style.width = '50%';
+    setTimeout(note.hideTips, 888);
   },
 
   hideTips : function(){
-    sw.etips.value = "?";
-    sw.etips.style.fontSize = 'medium';
+    note.etips.value = "?";
+    note.etips.style.fontSize = 'medium';
   },
 
   hideClefs : function(){
-    sw.esol.style.display="none";
-    sw.efa.style.display="none";
-    sw.esolfa.style.display="none";
+    note.esol.style.display="none";
+    note.efa.style.display="none";
+    note.esolfa.style.display="none";
   },
 
   removeFa : function(myPix){
@@ -260,13 +260,9 @@ var sw = {
 
 };
 
-window.addEventListener("load", sw.init);
+window.addEventListener("load", note.init);
 
-// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-// LICENSE
-// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-//
-// Copyright 2018 by Code Boxx
+// Based on stopwatch code by Code Boxx
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal

@@ -1,0 +1,51 @@
+#note {
+  background: white;
+  border: 1px solid #999;
+  padding: 20px;
+  border-radius: 10px;
+  max-width: 400px;
+  touch-action: manipulation;
+
+}
+
+#note-time {
+  font-size: medium;
+  font-weight: bold;
+  text-align: center;
+  transition: all 0.5s;
+  min-width: 15%;
+  box-sizing: padding-box;
+
+  padding: 10px;
+  display: inline-block;
+  border: 1px solid black;
+  color: black;
+  border-radius: 20px;
+}
+
+#note-sol, #note-fa, #note-solfa {
+  text-align: center;
+  width: 20%;
+  box-sizing: padding-box;
+  padding: 0px;
+  display: inline-block;
+  background: white;
+  border: 1px solid black;
+  color: #fff;
+  border-radius: 20px;
+  transition: all 0.5s;
+}
+
+#note-rst, #note-go, #note-tips {
+  font-size: medium;
+  text-align: center;
+  width: 15%;
+  box-sizing: padding-box;
+  padding: 10px;
+  display: inline-block;
+  background: black;
+  border: 0;
+  color: #fff;
+  border-radius: 20px;
+  transition: all 0.5s;
+}
