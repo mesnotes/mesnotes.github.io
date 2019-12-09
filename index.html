@@ -8,29 +8,29 @@
   <meta name="keywords" content="music,score,note">
   <meta name="author" content="Yoda">
   <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <link href="stopwatch.css" rel="stylesheet" />
+  <link href="note.css" rel="stylesheet" />
   <script src="script2.js"></script>
 </head>
 
 <body onload="">
 
-  <p id="dataForDebug"></p>
 
-  <div id="stopwatch">
-      <input type="button" value="&#8634;" name="reload" id="sw-rst" />
-      <input type="button" value="&#9658;" name="playpause" id="sw-go" />
-      <input type="button" value="?" name="tips" id="sw-tips" />
+  <div id="note">
+      <input type="button" value="&#8634;" name="reload" id="note-rst" />
+      <input type="button" value="&#9658;" name="playpause" id="note-go" />
+      <input type="button" value="?" name="tips" id="note-tips" />
 
-    <div id="sw-time">00:00</div>
+    <div id="note-time">00:00</div>
       <p>
-        <input type="button" value="𝄞" name="sol" id="sw-sol" />
-        <input type="button" value="𝄢" name="fa" id="sw-fa" />
-        <input type="button" value="𝄞+𝄢" name="sol+fa" id="sw-solfa" />
+        <input type="image" src="images/sol.png" name="sol" id="note-sol" />
+        <input type="image" src="images/fa.png" name="fa" id="note-fa" />
+        <input type="image" src="images/solfa.png" name="sol+fa" id="note-solfa" />
       </p>
     <img width="100%" id="myPicture" alt="some image" onclick="" />
   </div>
 
-  </div>
+
+  <p id="dataForDebug"></p>
 </body>
 
 </html>
